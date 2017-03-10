@@ -1,0 +1,14 @@
+#personal{
+  width:25%;
+}
+#output{
+  width:125px;
+  position:absolute;
+  left:175px;
+  float:left;
+}
+#picture{
+position: absolute;
+left:165px;
+z-index: -1;
+}

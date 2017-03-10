@@ -1,0 +1,168 @@
+#buttons{
+  width:100px;
+  border: solid;
+  font-size: 10px;
+}
+#debug{
+  width: 45%;
+  background-color: #B7BFBB;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 10px;
+  text-align: left;
+}
+header{
+  background-color: #B7BFBB;
+  padding-bottom: 0;
+  text-align: center;
+  font-size: 50px;
+  border-bottom: groove;
+}
+#nav{
+  text-align: left;
+  font-size: 15px;
+  margin:0;
+  background-color: black;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+header ul{
+  list-style-type: none;
+  margin:0;
+  padding:0;
+}
+header li {
+  display: inline;
+}
+header a{
+  font-size: 15px;
+  text-decoration: none;
+  padding-left: 10px;
+  margin:0;
+  width: 30%;
+  color: #B7BFBB;
+}
+
+header a:hover{
+  color: white;
+}
+#inputs ul{
+  list-style-type: none;
+  margin:0;
+  padding:0;
+}
+#inputs li{
+  display: inline;
+}
+#gameState{
+  width: 50%;
+  background-color: #B7BFBB;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 10px;
+  text-align: left;
+}
+#information{
+  width: 45%;
+  background-color: #B7BFBB;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 10px;
+  text-align: left;
+}
+#gameboard1{
+  text-align: left;
+  position:absolute;
+  margin-left: auto;
+  margin-top: 0;
+  padding:5%;
+  width:50%;
+  height:50%;
+  float:left;
+}
+#gameboard2{
+  text-align: left;
+  padding:6.7%;
+  width:50%;
+  height:50%;
+  position: relative;;
+  left: 600px;
+  top:0px;
+}
+#cell{
+  border: solid;
+  text-align: center;
+  font-size: 12px;
+  padding: 10px;
+  width:15px;
+  height:15px;
+}
+#text{
+  height: 15px;
+  width:100px;
+  border: solid;
+  font-size: 10px;
+}
+#select{
+  height:25px;
+  line-height:25px;
+  width:100px;
+  border: solid;
+  font-size: 10px;
+}
+#main{
+  position: relative;
+}
+.hit
+{
+background-color: black;
+}
+.hit:hover{
+  background-color: black;
+}
+
+.miss{
+  background-color: red;
+}
+.miss:hover{
+  background-color: red;
+}
+
+.placed{
+  background-color:#B7BFBB;
+  border: solid;
+}
+.opp{
+  background-color: white;
+}
+
+.button {
+    background-color: #B7BFBB; /* Green */
+    border: solid;
+    padding: 15px 32px;
+    margin-left: 5%;
+    margin-top: 15px;
+    margin-bottom: 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.footer {
+  position: absolute;
+  height: 10%;
+  width:98%;
+  padding-left: 10px;
+  background-color: #B7BFBB;
+  margin-top: 50px;
+  padding-top: 5px;
+  text-align: left;
+}
+
+.hit{
+  border: solid;
+  background-color: black;
+  padding: 10px;
+  width:15px;
+  height:15px;
+}

@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<title>Battleship</Title>
+  <head>
+    <link rel="stylesheet" href="battleship.css">
+      <header>
+    BattleShip
+    <div id=nav>
+    <ul>
+      <li><a href="index.html">Main</a></li>
+      <li><a href="gameplay.html">Play Game</a></li>
+      <li><a href="checkpoint.html">Check Point</a></li>
+    </ul>
+  </div>
+    </header>
+  </head>
+<body>
+  <div id=information>
+    <h1>Game Logic</h1>
+    <p><b>Incrementing the turns everytime a cell in click on:Done</b><br>Click on a cell and gameState.turns it incremented by one everytime a cell is clicked on.<br>
+      <b>Changing the the turn each time a cell is click on:Done</b><br>Click on a cell and it will change the gameState.turn to either 'yours' or 'opp' based on the amount of turns that have been taken.
+      <br><b>Check to see if all ships have been placed before allowing game to start:Done</b><br>Click the sart button and the gameStart function from the model is called. If all ships have been placed the game will start.If all the ships have not been placed a message will be displayed in the debug div asking user to place all ships.<br>
+      <b>Check to see if the game is over:Done</b><br>Click on a cell and the gameOver function from the model will be called. If all of either your ships or the oppnants damage properties equal their size properties then an alert will let the user know who won.
+      <br><b>Hits and misses are marked on each grid:Done</b><br>Click on a cell and it will check if a ship has been placed there and if it has it will turn the cell back. If it has not the cell will turn red.
+      </p><p><b>Allow user to play two player or one player:Incomplete</b><br>
+      <b>Randomly place opponants ships on oppnants board:Incomplete</b><br>
+      <b>Don't allow user to click on his own board:Incomplete</b><br>
+      <b>Allows oppanant to click on one of the cells of your board:Incomplete</b><br>
+      <b>Create way for users to placed ships on board before game starts:Incomplete</b><br>
+      <b>Notify user when one of thier ships or oppanants ships has been sunk:Incomplete</b>
+      <b>The computer player (game AI) makes follow-up shots when it hits, so that whenever it hits one of the player's ships it fires at adjacent squares until it has sunk the ship:Incomplete<b>
+      </p>
+  </div>
+</body>
+  <footer>
+<div class=footer>
+  <p>&copyMitchell Daw 2017</p>
+</div>
+</footer>
+</html>
