@@ -4,6 +4,7 @@
 <title>Battleship</Title>
   <head>
     <link rel="stylesheet" href="battleship.css">
+    <script src="battleship_model.js"></script>
       <header>
     BattleShip
     <div id=nav>
@@ -16,11 +17,16 @@
     </header>
   </head>
 <body>
-  <div id=information>
+  <div id=userinfo class=information>
+  </div>
+  <div class=information>
+    User Name:<input type=text id=username>
+    Password:<input type="password" id=password>
+    <input type=button value=log-in id=login onclick="loadPost()">
     <h1>Introduction</h1>
 <p>Battle ship is a childhood favortie game of many of us.<br>The internet has provided us a much easier way to play the game without having to buy and carry the clunky board around.</p>
   </div>
-  <div id=information>
+  <div class=information>
     <h1>Game play</h1>
     <ol>
     <li>First select where on the game board you would like to place your battleships.</li>

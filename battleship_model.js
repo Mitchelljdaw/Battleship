@@ -140,3 +140,31 @@ function gameStart()
     return gameState.gameStart = true;
   }
 }
+
+
+function loadPost(){
+  var userName = document.getElementById("username").value;
+  var passWord = document.getElementById("password").value;
+  var data = "userName=" + userName + "&" + "password=" + passWord;
+  var localRequest = new XMLHttpRequest();
+  localRequest.open("POST", "http://universe.tc.uvu.edu/cs2550/assignments/PasswordCheck/check.php", false);
+  localRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  localRequest.send(data);
+  if (localRequest.status == 200) {
+  var dataDiv = document.getElementById("userinfo");
+  var response = JSON.parse(localRequest.responseText);
+  console.log(response);
+  if(response.result == "valid"){
+    localStorage.setItem("Login-Info",response.userName + " " + response.timestamp);
+    console.log(localStorage.getItem("Login-Info"))
+    window.open("gameplay.html")
+  }
+  else{
+    dataDiv.innerHTML = "The user name or password you entered was not correct";
+  }
+}
+}
+
+function clearLocal(){
+  localStorage.clear();
+}
