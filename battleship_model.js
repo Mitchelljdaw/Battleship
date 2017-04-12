@@ -1,29 +1,29 @@
 var gameState={
   grid:
   [
+  [1,1,1,1,1,0,0,0,0,1],
+  [0,0,0,0,0,0,0,0,0,1],
+  [0,0,0,0,0,0,0,0,0,1],
+  [0,0,0,0,0,2,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0]
+  [1,1,1,1,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,1],
+  [0,0,0,0,0,0,0,0,0,1],
+  [0,0,0,0,0,0,0,0,0,1],
+  [1,1,0,0,0,0,0,0,0,1]
   ],
   oppGrid:
   [
+  [1,0,0,0,1,0,0,0,0,1],
+  [1,0,0,0,1,0,0,0,0,1],
+  [1,0,0,0,1,0,0,0,0,1],
+  [1,2,0,0,1,0,0,0,0,1],
+  [0,0,0,0,1,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0]
+  [0,0,0,0,1,0,0,0,0,0],
+  [0,0,0,0,1,0,0,0,0,0],
+  [1,1,0,0,1,0,0,0,0,0]
   ],
   turns:0,
   turn:"yours",
@@ -167,4 +167,61 @@ function loadPost(){
 
 function clearLocal(){
   localStorage.clear();
+}
+
+function loadGame(){
+  var request = new XMLHttpRequest();
+  request.open("GET","battleship.XML", false);
+  request.send();
+  var information = document.getElementById("information");
+  var xmldoc = request.responseXML;
+  var xmlrows = xmldoc.getElementsByTagName("player");
+
+  for(var i = 0; i < xmlrows.length; i++){
+    var xmlrow = xmlrows[i];
+    information.innerHTML += "Player:" + xmlrow.getAttribute("name");
+    var turns = xmlrow.getElementsByTagName("turns")[0];
+    var ships = xmlrow.getElementsByTagName("ships")[0];
+    var hits = xmlrow.getElementsByTagName("hits")[0];
+    gameState.turns = turns.firstChild.data;
+    information.innerHTML += "<br>" + "Turns:" + turns.firstChild.data + "<br>"+"Ships:" + ships.firstChild.data + "<br>" + "Hits:" + hits.firstChild.data  + "<br>" + "<br>";
+
+  }
+  generateYourBoard();
+  generateOppBoard();
+}
+
+function generateYourBoard(){
+  var cells = document.getElementsByTagName("td");
+  var count = 0;
+  for(var i = 0; i < gameState.grid.length; i++){
+    for(var r = 0; r < gameState.grid.length; r++){
+      if(getCell(i,r) == 1){
+        cells[count].className = "placed";
+      }
+      else if(getCell(i,r) == 2){
+        cells[count]. className = "miss";
+      }
+      count++;
+  }
+}
+}
+
+function generateOppBoard(){
+  var cells = document.getElementsByTagName("td");
+  var count = cells.length/2;
+for(var i =0; i < gameState.oppGrid.length; i++){
+  for(var r = 0; r < gameState.oppGrid.length; r++){
+if(getOppCell(i,r) == 2){
+  cells[count].className = "miss";
+}
+else if(getOppCell(i,r) == 3){
+  cells[count].className = "hit";
+}
+else{
+  cells[count].className = "placed";
+}
+count++;
+}
+}
 }
