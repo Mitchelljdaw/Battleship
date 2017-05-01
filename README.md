@@ -1,2 +1,2 @@
 # Battleship
-Current project for online battleship/Unfinished 
+Finihsed project. Game is now playable. 
