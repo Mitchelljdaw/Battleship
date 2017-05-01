@@ -1,3 +1,16 @@
+#buttons{
+  width:100px;
+  border: solid;
+  font-size: 10px;
+}
+#debug{
+  width: 45%;
+  background-color: #B7BFBB;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 10px;
+  text-align: left;
+}
 header{
   background-color: #B7BFBB;
   padding-bottom: 0;
@@ -33,21 +46,29 @@ header a{
 header a:hover{
   color: white;
 }
+#inputs ul{
+  list-style-type: none;
+  margin:0;
+  padding:0;
+}
+#inputs li{
+  display: inline;
+}
 #gameState{
   width: 50%;
   background-color: #B7BFBB;
   border-radius: 15px;
   padding: 10px;
   margin: 10px;
-  text-align: center;
+  text-align: left;
 }
 #information{
-  width: 30%;
+  width: 45%;
   background-color: #B7BFBB;
   border-radius: 15px;
   padding: 10px;
   margin: 10px;
-  text-align: center;
+  text-align: left;
 }
 #gameboard1{
   text-align: left;
@@ -59,43 +80,73 @@ header a:hover{
   height:50%;
   float:left;
 }
-#gameboard2{
+#hide{
   text-align: left;
+  position:absolute;
+  margin-left: auto;
+  margin-top: 0;
   padding:5%;
   width:50%;
-  height:50%;
-  position: relative;
-  left: 40%;
-  top:0px;
+  height:100%;
+  float:left;
+  z-index:2;
+  opacity:0.4;
+  filter: alpha(opacity = 50);
 }
-#startButton{
-float: left;
-margin-left: 5%;
+#gameboard2{
+  text-align: left;
+  padding:6.7%;
+  width:50%;
+  height:50%;
+  position: relative;;
+  left: 600px;
+  top:0px;
 }
 #cell{
   border: solid;
+  text-align: center;
+  font-size: 12px;
   padding: 10px;
   width:15px;
   height:15px;
 }
-#playbutton{
-  padding: 15px;
-  width:15px;
-  height:15px;
+#text{
+  height: 15px;
+  width:100px;
+  border: solid;
+  font-size: 10px;
 }
-td:hover{
-  background-color: #B7BFBB;
-  color: #000000;
+#select{
+  height:25px;
+  line-height:25px;
+  width:100px;
+  border: solid;
+  font-size: 10px;
 }
-
+#main{
+  position: relative;
+}
 .hit
 {
 background-color: black;
+}
+.hit:hover{
+  background-color: black;
+}
+
+.miss{
+  background-color: red;
+}
+.miss:hover{
+  background-color: red;
 }
 
 .placed{
   background-color:#B7BFBB;
   border: solid;
+}
+.opp{
+  background-color: white;
 }
 
 .button {
@@ -121,7 +172,7 @@ background-color: black;
   text-align: left;
 }
 
-#check{
+.hit{
   border: solid;
   background-color: black;
   padding: 10px;

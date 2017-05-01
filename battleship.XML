@@ -1,12 +1,8 @@
 <players>
 <player name="Mitchell">
-<ships>5</ships>
-<turns>1</turns>
-<hits>0</hits>
+<wins>0</wins>
 </player>
 <player name="Enemy">
-<ships>5</ships>
-<turns>1</turns>
-<hits>0</hits>
+<wins>0</wins>
 </player>
 </players>

@@ -11,7 +11,7 @@
     <ul>
       <li><a href="index.html">Main</a></li>
       <li><a href="gameplay.html">Play Game</a></li>
-      <li><a href="checkpoint.html">Check Point</a></li>
+      <li><a href="documentation.html">Documentation</a></li>
     </ul>
   </div>
     </header>
@@ -21,24 +21,29 @@
     <div  id="gameboard1">
       <div id="inputs">
         <ul>
-          <li>
-            <select id=select onchange="select();" onfocus="this.selectedIndex = -1;">
-               <option value="Two Players">Two Players</option>
-               <option value="One Player">One Player</option>
-             </select>
-         </li>
-          <li><input type=text value="NAME" id=text onkeypress="text(event)"></input></li>
-          <li><input type=button value=PLACE id=buttons onclick="place()"></input></li>
-          <li><input type=button value="Load Game" id=buttons onclick="loadGame()"></input></li>
+          <li><input type=text value="NAME" id=text onkeypress="text(event)" maxlength="20" autofocus></input></li>
+          <li><input type=button value="Start Game" id=buttons onclick="begin()"></input></li>
+          <li><input type=button value="New Game" id=buttons onclick="restart()"></input></li>
         </ul>
       </div>
+    <div id="hide"></div>
 </div>
 <div id="gameboard2">
 </div>
 <div id=information>
+  <p>Game Data from XML file</p>
 </div>
 <div id=debug>
-  <script> debug.innerHTML = localStorage.getItem("Login-Info") </script>
+  <script>
+  if(localStorage["Games-won-you"] == "undefined" ||localStorage.length == 0){
+    debug.innerHTML = "No games have been played.";
+    localStorage["Games-won-you"] = "";
+    localStorage["Games-won-opp"] = "";
+  }
+  else{
+    debug.innerHTML ="You have won:"+localStorage.getItem("Games-won-you").length+" games."+"<br>"+"The opponant has won:"+localStorage.getItem("Games-won-opp").length+" games.";
+  }
+   </script>
   <input type=button value=Clear id=button onclick="clearLocal()"></input>
 </div>
   </div>

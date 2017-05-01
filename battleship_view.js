@@ -31,43 +31,142 @@ function createTable(colums, rows)
   {
     cells[i].onclick = function()
     {
-      click();
-      gameOver();
-      var whosTurn = turn();
-      var cell = this.cellIndex + 1;
-      var row = this.parentNode.rowIndex + 1;
-      if(this.className == "hit"){
-        alert("already been hit");
+      var cell = this.cellIndex;
+      var row = this.parentNode.rowIndex;
+      var gridCell = getOppCell(row,cell);
+      if(gameState.gameStart == false){
+        alert("Please press 'Game start' button");
       }
-      else if(this.className == "placed"){
-        this.className = "hit";
-
+      else if(gameState.gameOver == true){
+        alert("The game is over please start a new game.");
       }
-      else if(this.className == "miss"){
-        alert("You've already guessed here and its wrong!");
+      else if(this.className == "miss" || this.className == "hit"){
+        alert("You have already guessed this spot please guess again.")
       }
       else{
-        this.className = "miss";
-        this.innerHTML = gameState.turns;
+        gameOver();
+        if(gameState.gameOver == true && gameState.turn == "yours"){
+          if(localStorage["Games-won-you"] == "null"){
+            localStorage["Games-won-you"] = 1;
+          }
+          else{
+            localStorage["Games-won-you"] += 1;
+          }
+          alert("Congradulations you sunk all the enemies ships!");
+          return;
+        }
+        else if(gameState.gameOver == true && gameState.turn == "opp"){
+          if(localStorage["Games-won-opp"] == "null"){
+            localStorage["Games-won-opp"] = 1;
+          }
+          else{
+            localStorage["Games-won-opp"] += 1;
+          }
+          alert("I am sorry the enemy has sunk all of you ships!");
+          return;
+        }
+        else{
+          var cell = this.cellIndex;
+          var row = this.parentNode.rowIndex;
+          var gridCell = getOppCell(row,cell);
+          if(gameState.turn == "opp"){
+            alert("It is not your turn.");
+          }
+          else if(gameState.turn == "yours"){
+            whosTurn = turn();
+            if(gridCell == 10){
+              alert("already been hit");
+            }
+            else if(gridCell == 6 || gridCell == 5 || gridCell == 4 || gridCell == 3 || gridCell == 2){
+              gameState.oppGrid[row][cell] = 10;
+              this.className = "hit";
+              if(gridCell == 6 ){
+                console.log("You just hit the opponant's large ship.");
+                oppShips.lDamage++;
+                if(oppShips.lDamage == 5){
+                  var win = new Audio('Assignment2/explosion.wav');
+                  win.play();
+                  alert("You just sunk the opponant's largest ship!")
+                }
+              }
+              else if(gridCell == 5 ){
+                console.log("You just hit one of the opponant's medium ships.");
+                oppShips.medDamage++;
+                if(oppShips.medDamage == 4){
+                  var win = new Audio('Assignment2/explosion.wav');
+                  win.play();
+                  alert("You just sunk one of the opponant's medium ships!")
+                }
+              }
+              else if(gridCell == 4 ){
+                console.log("You just hit the opponant's medium ships.");
+                oppShips.med2Damage++;
+                if(oppShips.med2Damage == 4){
+                  var win = new Audio('Assignment2/explosion.wav');
+                  win.play();
+                  alert("You just sunk the opponants medium ships!")
+                }
+              }
+              else if(gridCell == 3){
+                console.log("You just hit the opponant's mid ship.");
+                oppShips.midDamage++;
+                if(oppShips.midDamage == 3){
+                  var win = new Audio('Assignment2/explosion.wav');
+                  win.play();
+                  alert("You just sunk the opponant's mid ship!")
+                }
+              }
+              else if(gridCell == 2){
+                console.log("You just hit the opponant's small ship.");
+                oppShips.sDamage++;
+                if(oppShips.sDamage == 2){
+                  var win = new Audio('Assignment2/explosion.wav');
+                  win.play();
+                  alert("You just sunk the opponant's small ship!")
+                }
+              }
+            }
+            else if(gridCell == 0){
+              gameState.oppGrid[row][cell] = 9;
+              this.className = "miss";
+            }
+            else{
+              this.innerHTML = gameState.turns;
+            }
+          }
+          gameOver();
+          if(gameState.gameOver == false){
+            oppTurn();
+            gameOver();
+          }
       }
-      if(gameState.gameOver == true && gameState.turn == "yours"){
-        alert("Congradulations you sunk all the enemies ships!")
       }
-      else if(gameState.gameOver == true && gameState.turn == "opp"){
-        alert("I am sorry the enemy has sunk all of you ships!")
-      }
-      inform.innerHTML = "<p>You cliked on cell:" + cell + " and row:" + row + "<br>It is " + whosTurn + "'s turn." + "<br>The game is still not over becasue gameOver is " + gameOver() + "<br>That was the " + gameState.turns + " turn" + "</p>";
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Animation
 var move = 600;
 var lmove = 0;
 var move2 = 0;
 
-var right = setInterval(right,100);
-var left = setInterval(left,200);
-var down = setInterval(down,100);
-var up = setInterval(up,200)
+//var right = setInterval(right,100);
+//var left = setInterval(left,200);
+//var down = setInterval(down,100);
+//var up = setInterval(up,200)
 
 
 function  right(){
@@ -123,9 +222,22 @@ function text(e){
   var name = document.getElementById("Yourname");
   if (e.keyCode === 13 && count == 0){
     e.preventDefault();
-    name.innerHTML = text.value;
-    count++;
+    if(text.value !== "NAME"){
+      name.innerHTML = text.value;
+      text.readOnly = true;
+      count++;
+    }
   }
+}
+
+function makeNameForSure(){
+  var text = document.getElementById("text");
+  var name = document.getElementById("Yourname");
+    if(text.value !== "NAME"){
+      name.innerHTML = text.value;
+      text.readOnly = true;
+      count++;
+    }
 }
 
 function select(){
